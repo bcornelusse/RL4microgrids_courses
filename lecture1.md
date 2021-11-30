@@ -1221,6 +1221,38 @@ Changes that can occur are
 A simulator of the system is used to train a control policy off-line.
 
 Time steps of one-hour, several months of data available (PV and load).
+.center.width-100[![](figures/paper_figs/PV_and_load.png)]
+
+---
+# Microgrid MDP
+
+.center.width-100[![](figures/paper_figs/mg_MDP.png)]
+
+---
+
+# The proposed algorithm *D-Dyna* 
+
+.center.width-60[![](figures/paper_figs/ddyna.png)]
+ - Standard RL optimization where the policy is updated using samples collected from interaction with the real environment.
+ - Plus a loop where the policy is updated by samples collected by a *model of the environment*.
+
+---
+
+# Model and policy updates
+
+.grid[
+.kol-1-2[
+.center.width-90[![](figures/paper_figs/algo5and6.png)]
+]
+.kol-1-2[
+Algo 5: The policy update was performed with the proximal policy optimization *PPO* algorithm.]
+
+</br></br>
+Algo 6: The model of the environment is fitted with a regressor using states and reward samples collected from the real environment.
+A quantile regressor was used as a model and was trained with distributional losses.
+]
+
+
 
 ---
 
@@ -1228,30 +1260,57 @@ Time steps of one-hour, several months of data available (PV and load).
 
 Although there has been some progress in RL algorithms and function approximators, there is still a 
 
+---
+
+# El Espino microgrid
+
+.center.width-100[![](figures/paper_figs/El-espino.png)]
 
 ---
 
 # Benchmarks
 
-The learned policy is compared to 
-1. A myopic rule based controller (lower bound)
-2. An optimization-based controller with perfect foresight over several time steps (upper bound)
+The policy learned with D-Dyna is compared to 
+1. *Heuristic*: a myopic rule based controller (lower bound)
+2. *MPC-1h*: an optimization-based controller with perfect foresight over 1 hour
+3. *MPC-24h*: an optimization-based controller with perfect foresight over 24 hours (upper bound)
+4. "vanilla" *PPO*: model-free RL, to see the benefits from using a model 
 
 ---
 
 # Test 1: Generalization
 
+- We use the first year 2016 of the dataset for training and we evaluate on the second year 2017
 .center.width-100[![](figures/paper_figs/generalization.png)]
+- 25% cost reduction w.r.t. heurisitc controller
+- Comparable performance to MPC-24h
+
 
 ---
 
 # Test 2: Robustness
 
+- Abrupt failure of the storage system (not known by any model!)
 .center.width-100[![](figures/paper_figs/robustness.png)]
+- D-Dyna can detect change since the model has been exposed to similar incidents during training.
+- Heuristic, MPC-1h, MPC-24h cannot adapt since no mechanism to detect or handle failure.
 
 ---
 
 # Test 3: Transfer
+
+Transfer learning is the ability of speeding up learning on new MDPs by reusing past experiences between similar MDPs
+.center.width-100[![](figures/paper_figs/transfer.png)]
+- Jan. 2016 to pre-train the algorithms. Then we initiate the training process for Feb. and Aug. 2016 using the pre-trained model.
+- Better performance than learning from scratch (compare D-Dyna to PPO)
+
+---
+
+.center.width-100[![](figures/paper_figs/transfer_2.png)]
+
+- In contrast to February where the two policies perform similarly, in August the solar irraditation is limited (south-hemisphere). 
+- This amplifies the difference between a naïve controller and a good look-ahead policy
+
 
 ---
 
@@ -1260,7 +1319,7 @@ The learned policy is compared to
 - Learned explicitely a control policy that can be transferred to a new setup with mild adaptations
 - robust to changes in the system
 
-- Learning a policy with continuous actions as future work.
+- Learning a policy with continuous actions as future work
 - There is still a lot to be done to apply to larger systems
 
 ---
