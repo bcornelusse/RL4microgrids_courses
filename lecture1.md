@@ -1258,7 +1258,12 @@ A quantile regressor was used as a model and was trained with distributional los
 
 # Implementation tricks
 
-Although there has been some progress in RL algorithms and function approximators, there is still a 
+Although there has been some progress in RL algorithms and function approximators, this problem is still challenging.
+
+The problem is further simplified to consider meta-actions: 
+   - start-stop a generator, charge or discharge a battery
+   - relying on simple rules to derive precise set-points.
+
 
 ---
 
