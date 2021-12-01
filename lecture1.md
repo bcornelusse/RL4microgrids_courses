@@ -84,11 +84,7 @@ To do this I have to introduce concepts of *reinforcement learning*, hence also 
 class: middle
 # Markov decision processes
 
-This section is a subset of the lecture
-
- https://glouppe.github.io/info8006-introduction-to-ai/?p=lecture8.md
-
-by my colleague Professor G. Louppe.
+This section is a subset of the [lecture 8](https://glouppe.github.io/info8006-introduction-to-ai/?p=lecture8.md) of the [AI course](https://github.com/glouppe/info8006-introduction-to-ai) by my colleague Professor G. Louppe.
 
 
 ---
@@ -542,11 +538,7 @@ class: middle
 class: middle
 # Reinforcement learning
 
-This section is a subset of the lecture
-
- https://glouppe.github.io/info8006-introduction-to-ai/?p=lecture9.md
-
-by my colleague Professor G. Louppe.
+This section is a subset of the [lecture 9](https://glouppe.github.io/info8006-introduction-to-ai/?p=lecture9.md) of the [AI course](https://github.com/glouppe/info8006-introduction-to-ai) by my colleague Professor G. Louppe.
 
 ---
 
